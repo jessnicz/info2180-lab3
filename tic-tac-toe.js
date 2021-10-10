@@ -21,5 +21,12 @@ window.addEventListener("load", () =>{
             }
             }
     })
+    el.onmouseover = () => {
+        el.classList.add("hover");
+    }
+
+    el.onmouseout = () => {
+        el.classList.remove("hover");
+    }
 
 });
