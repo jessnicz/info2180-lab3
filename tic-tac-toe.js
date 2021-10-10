@@ -6,6 +6,7 @@ window.addEventListener("load", () =>{
     let winner;
     let xWins;
     let oWins;
+    let state = document.getElementById("status");
 
 
     board.forEach(el =>{
@@ -47,16 +48,50 @@ window.addEventListener("load", () =>{
                     }
 
                 })
+            }        
+        }
+
+        el.onmouseover = () => {
+            el.classList.add("hover");
+        }
+
+        el.onmouseout = () => {
+            el.classList.remove("hover");
+        }
+
+    });
+
+   let button = document.getElementsByClassName ("btn")[0];
+   button.onclick = () => {
+       location.reload();   }
+   
+   let gameWinner = () => {
+       for(let move = 0; winnerLog.length; move++){
+            winnerLog[move].forEach(el => {
+                if (board[el].classList.contains("X")){
+                    xWins++;
+                }
+                else if (board[el].classList.contains("O")){
+                    oWins++;
+                }
+            });
+
+            if (xWins == 3){
+                return 1;
+            }
+            else if (oWins == 3){
+                return 0;
+            }
+            xWins = 0;
+            oWins = 0;
+
+            if (move < winnerLog.length - 1){
+                continue;
+            }
+            return -1;
             }
 
-            }
-    })
-    el.onmouseover = () => {
-        el.classList.add("hover");
-    }
+        }
 
-    el.onmouseout = () => {
-        el.classList.remove("hover");
-    }
 
 });
